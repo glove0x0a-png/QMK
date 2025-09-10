@@ -1,0 +1,16 @@
+{
+  "keyboard_name": "yourkbd_duplex_4x12",
+  "manufacturer": "YourOrg",
+  "maintainer": "yourgithub",
+  "usb": { "vid": "0xFEED", "pid": "0x6060", "device_version": "0.0.1" },
+  "diode_direction": "ROW2COL",
+  "layouts": {
+    "LAYOUT_4x12": {
+      "key_count": 48,
+      "layout": [
+        { "matrix": [0,0], "x":0, "y":0 }, { "matrix": [0,1], "x":1, "y":0 }, ...,
+        { "matrix": [3,11], "x":11, "y":3 }
+      ]
+    }
+  }
+}
