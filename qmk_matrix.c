@@ -319,7 +319,7 @@ __attribute__((weak)) bool transport_master_if_connected(matrix_row_t master_mat
 uint8_t matrix_scan(void) {
     matrix_row_t curr_matrix[MATRIX_ROWS] = {0};
 
-#if defined(DIRECT_PINS) || (DIODE_DIRECTION == COL2ROW)
+#if defined(DIODE_DIRECTION == COL2ROW)
     // Set row, read cols
     for (uint8_t current_row = 0; current_row < MATRIX_ROWS_PER_HAND; current_row++) {
         matrix_read_cols_on_row(curr_matrix, current_row);
@@ -335,11 +335,7 @@ uint8_t matrix_scan(void) {
     bool changed = memcmp(raw_matrix, curr_matrix, sizeof(curr_matrix)) != 0;
     if (changed) memcpy(raw_matrix, curr_matrix, sizeof(curr_matrix));
 
-#ifdef SPLIT_KEYBOARD
-    changed = debounce(raw_matrix, matrix + thisHand, MATRIX_ROWS_PER_HAND, changed) | matrix_post_scan();
-#else
     changed = debounce(raw_matrix, matrix, MATRIX_ROWS_PER_HAND, changed);
     matrix_scan_kb();
-#endif
     return (uint8_t)changed;
 }
